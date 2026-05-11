@@ -1,4 +1,4 @@
-# MERN Minesweeper
+# Minesweeper
 
 A full-stack Minesweeper game built using the MERN stack with recursive flood-fill logic, multiple difficulty modes, timer tracking, flagging mechanics, and persistent leaderboard storage using MongoDB.
 
