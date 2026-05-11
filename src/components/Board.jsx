@@ -104,8 +104,13 @@ function Board() {
     }
 
     async function loadScores() {
-        const data = await getScores()
-        setScores(data)
+        try {
+            const data = await getScores()
+            setScores(Array.isArray(data) ? data : [])
+        } catch (error) {
+            console.log(error)
+            setScores([])
+        }
     }
 
     async function revealCell(row, col) {
