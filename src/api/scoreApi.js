@@ -1,4 +1,4 @@
-const API_URL = "http://localhost:5000/scores"
+const API_URL = "https://minesweeper-3dgt.onrender.com/scores"
 
 export async function saveScore(scoreData) {
     const response = await fetch(API_URL, {
