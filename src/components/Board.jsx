@@ -150,14 +150,14 @@ function Board() {
                 const newRow = row + rowOffset
                 const newCol = col + colOffset
                 if (
-                    newRow >= 0 && newRow < 5 &&
-                    newCol >= 0 && newCol < 5
+                    newRow >= 0 && newRow < board.length &&
+                    newCol >= 0 && newCol < board.length
                 ) {
                     revealCell(newRow, newCol)
                 }
             }
         }
-        newBoard[row][col].revealed = true
+        
         if (checkWin(newBoard)) {
             if (!gameWon) {
                 setGameWon(true)
