@@ -79,20 +79,21 @@ function Board() {
     const [difficulty, setDifficulty] = useState("easy")
     const [time, setTime] = useState(0)
     const [scores, setScores] = useState([])
+    const [started, setStarted] = useState(false)
 
     useEffect(() => {
         loadScores()
     }, [])
 
     useEffect(() => {
-        if (gameOver || gameWon) return
+        if (!started || gameOver || gameWon) return
 
         const interval = setInterval(() => {
             setTime(prevTime => prevTime + 1)
         }, 1000)
 
         return () => clearInterval(interval)
-    }, [gameOver, gameWon])
+    }, [started, gameOver, gameWon])
 
     function checkWin(board) {
         for (let row of board) {
@@ -115,6 +116,8 @@ function Board() {
 
     async function revealCell(row, col) {
         if (gameOver || gameWon) return
+
+        if (!started) setStarted(true)
 
         const newBoard = [...board]
         const cell = newBoard[row][col]
@@ -175,6 +178,8 @@ function Board() {
     function toggleFlag(row, col) {
         if (gameOver || gameWon) return
 
+        if (!started) setStarted(true)
+
         const newBoard = [...board]
         const cell = newBoard[row][col]
 
@@ -198,6 +203,7 @@ function Board() {
         setTime(0)
         setGameOver(false)
         setGameWon(false)
+        setStarted(false)
     }
 
     function restartGame() {
@@ -211,6 +217,7 @@ function Board() {
         setTime(0)
         setGameOver(false)
         setGameWon(false)
+        setStarted(false)
     }
 
     return (
